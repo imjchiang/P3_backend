@@ -7,7 +7,7 @@ const CommentSchema = new Schema(
     //an array of text
     descriptionsAndCode:
     [{
-        type: Text,
+        type: String,
         default: "No description or code available"
     }],
     //User passed by the reference to id
@@ -61,7 +61,7 @@ const PostSchema = new Schema(
     //an array of text
     descriptionsAndCode:
     [{
-        type: Text,
+        type: String,
         default: "No description or code available"
     }],
     //User passed by the reference to id

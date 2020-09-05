@@ -27,3 +27,6 @@ db.on("error", (err) =>
 });
 
 module.exports.User = require("./User");
+module.exports.Post = require("./Post");
+module.exports.Tag = require("./Tag");
+
