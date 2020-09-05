@@ -19,13 +19,13 @@ const UserSchema = new Schema(
         type: String,
         required: true
     },
-    //an array of posts passed by the id
+    //an array of posts passed by the reference to id
     posts: 
     [{
         type: Schema.ObjectId,
         ref: "Post"
     }],
-    //an array of comments passed by the id
+    //an array of comments passed by the reference to id
     comments:
     [{
         type: Schema.ObjectId,
