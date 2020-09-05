@@ -16,7 +16,6 @@ router.get("/", (req, res ) =>
 })
 
 // router.post("/", passport.authenticate('jwt', { session: false }), (req,res) => 
-
 router.post("/", (req,res) => 
 {   
     db.Post.create(req.body)
@@ -35,11 +34,26 @@ router.post("/", (req,res) =>
 
 })
 
+// router.put("/id", passport.authenticate('jwt', { session: false }), (req,res) => 
+router.get('/:id', (req,res) =>
+{
+    db.Post.findById(req.params.id)
+    .then(foundPost => {
+        if(foundPost){
+            res.send(foundPost)
+        }else{
+            res.status(404).send({message: 'Resource not located'})
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(503).send({message: 'Service Unavailable'})
+    })
+})
 
-// router.put("/", passport.authenticate('jwt', { session: false }), (req,res) => 
-
-router.put('/:id', (req,res)=>{
-
+// router.put("/id", passport.authenticate('jwt', { session: false }), (req,res) => 
+router.put('/:id', (req,res)=>
+{
     db.Post.findOneAndUpdate({
         _id:req.params.id
     },
@@ -56,5 +70,17 @@ router.put('/:id', (req,res)=>{
     })
 })
 
+// router.delete("/id", passport.authenticate('jwt', { session: false }), (req,res) => 
+router.delete('/:id', (req,res)=> 
+{
+    db.Post.findByIdAndDelete(req.params.id)
+    .then(() => {
+        res.status(204).send()
+    })
+    .catch(err=>{
+        console.log(err)
+        res.status(503).send({message: 'server error'})
+    }) 
+})
 
 module.exports = router;
