@@ -15,7 +15,6 @@ router.get("/", (req, res ) =>
     res.json({msg: "Posts get route working"})
 })
 
-
 // router.post("/", passport.authenticate('jwt', { session: false }), (req,res) => 
 
 router.post("/", (req,res) => 
@@ -35,4 +34,27 @@ router.post("/", (req,res) =>
     })
 
 })
+
+
+// router.put("/", passport.authenticate('jwt', { session: false }), (req,res) => 
+
+router.put('/:id', (req,res)=>{
+
+    db.Post.findOneAndUpdate({
+        _id:req.params.id
+    },
+    req.body,
+    {
+        new: true
+    })
+    .then(updatedPost => {
+        res.send(updatedPost)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(503).send({message: 'server error'})
+    })
+})
+
+
 module.exports = router;
