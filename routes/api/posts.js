@@ -2,11 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const JWT_SECRET = process.env.JWT_SECRET;
-
 
 const db = require("../../models");
 
@@ -21,6 +19,7 @@ router.get('/', (req,res) => {
         res.status.apply(503).send({message: 'Database asleep?'})
     })
 })
+
 // router.post("/", passport.authenticate('jwt', { session: false }), (req,res) => 
 router.post("/", (req,res) => 
 {   
@@ -37,7 +36,6 @@ router.post("/", (req,res) =>
             res.status(503).send({message: "Database or server error!"})
         }
     })
-
 })
 
 // router.put("/id", passport.authenticate('jwt', { session: false }), (req,res) => 
