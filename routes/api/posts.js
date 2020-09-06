@@ -10,11 +10,17 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const db = require("../../models");
 
-router.get("/", (req, res ) =>
-{
-    res.json({msg: "Posts get route working"})
+router.get('/', (req,res) => {
+    db.Post.find().sort('-date')
+    .then(foundPost => {
+        console.log(foundPost)
+        res.send(foundPost)
+    })
+    .catch(err=>{
+        console.log(err)
+        res.status.apply(503).send({message: 'Database asleep?'})
+    })
 })
-
 // router.post("/", passport.authenticate('jwt', { session: false }), (req,res) => 
 router.post("/", (req,res) => 
 {   
