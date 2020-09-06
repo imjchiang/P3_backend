@@ -59,11 +59,11 @@ const PostSchema = new Schema(
         ref: "Tag"
     }],
     //an array of text
-    descriptionsAndCode:
-    [{
+    descriptionAndCode:
+    {
         type: String,
         default: "No description or code available"
-    }],
+    },
     //User passed by the reference to id
     author:
     {
