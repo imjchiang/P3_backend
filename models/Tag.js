@@ -5,16 +5,14 @@ const Schema = mongoose.Schema;
 const TagSchema = new Schema(
 {
     name:
-    [{
-        type: String,
-        default: 
-        [
-            "git", "front-end", "back-end", "fullstack", 
-            "HTML", "CSS", "JavaScript", "databases", 
-            "MongoDB", "Sequel", "node.js", 
-            "autherization", "React", "EJS", "JSX"
-        ]
-    }]
+    {
+        type: String
+    }
 });
 
 module.exports = Tag = mongoose.model("Tag", TagSchema);
+
+"git", "front-end", "back-end", "fullstack", 
+"HTML", "CSS", "JavaScript", "databases", 
+"MongoDB", "Sequel", "node.js", 
+"autherization", "React", "EJS", "JSX"
