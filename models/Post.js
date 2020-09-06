@@ -60,10 +60,10 @@ const PostSchema = new Schema(
     }],
     //an array of text
     descriptionAndCode:
-    {
+    [{
         type: String,
         default: "No description or code available"
-    },
+    }],
     //User passed by the reference to id
     author:
     {
