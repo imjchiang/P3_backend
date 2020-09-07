@@ -41,7 +41,7 @@ router.post("/", (req,res) =>
 // router.put("/id", passport.authenticate('jwt', { session: false }), (req,res) => 
 router.get('/:id', (req,res) =>
 {
-    db.Post.findById(req.params.id).populate({path:'author',select:'name'})
+    db.Post.findById(req.params.id).populate({path:'author',select:'name'}).populate({path:'tags',select:'name'})
     .then(foundPost => {
         if(foundPost){
             res.send(foundPost)
