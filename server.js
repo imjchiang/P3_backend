@@ -7,6 +7,7 @@ const passport = require("passport");
 
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts")
+const tags = require("./routes/api/tags")
 
 //MIDDLEWARE
 app.use(cors());
@@ -27,6 +28,7 @@ app.get("/", (req, res) =>
 
 app.use("/api/users", users);
 app.use("/api/posts", posts);
+app.use("/api/tags", tags);
 
 app.listen(port, () =>
 {

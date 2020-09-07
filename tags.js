@@ -3,7 +3,7 @@ require("dotenv").config();
 const { Mongoose } = require("mongoose");
 const Tag = require("./models/Tag");
 
-//Inserting data 
+// Inserting data 
 
 // Tag.insertMany([
 //     { name: 'git'},
