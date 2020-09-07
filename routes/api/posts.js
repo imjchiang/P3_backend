@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const db = require("../../models");
 
 router.get('/', (req,res) => {
-    db.Post.find().sort('-date')
+    db.Post.find().populate({path:'author',select:'name'}).sort('-date')
     .then(foundPost => {
         console.log(foundPost)
         res.send(foundPost)
