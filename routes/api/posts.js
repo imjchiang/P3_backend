@@ -43,16 +43,14 @@ router.put('/:id/comments', (req,res)=>
     db.Post.findOneAndUpdate({
         _id:req.params.id
     }, 
-    {$push: 
+    {$push:
         {
-        comments: 
-        {
-        descriptionsAndCode: req.body.descriptionsAndCode, 
-        author: req.body.author
-        }
+            comments: {
+            descriptionsAndCode: req.body.descriptionsAndCode, 
+            author: req.body.author
+            }
         }       
-    },
-    
+    },   
     {
         new: true
     })
@@ -66,11 +64,38 @@ router.put('/:id/comments', (req,res)=>
     })
 })
 
+// deleting comments
+router.put('/:id/comments/delete', (req,res)=>
+{
+    db.Post.findOneAndUpdate({
+        _id:req.params.id
+    }, 
+    {$pull:
+        {
+            comments: {
+                descriptionsAndCode:req.body.descriptionsAndCode,
+                author: req.body.author
+            }
+        }
+    },   
+    {
+        new: true
+    })
+    .then(deletedcomment => {
+        res.send(deletedcomment)
+        console.log(deletedcomment)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(503).send({message: 'server error'})
+    })
+})
+
 
 // router.put("/id", passport.authenticate('jwt', { session: false }), (req,res) => 
 router.get('/:id', (req,res) =>
 {
-    db.Post.findById(req.params.id).populate({path:'author',select:'name'}).populate({path:'tags',select:'name'}).populate({path:'comments.author',select:'name'})
+    db.Post.findById(req.params.id).populate({path:'author',select:'name'}).populate({path:'tags',select:'name'})
     .then(foundPost => {
         if(foundPost){
             res.send(foundPost)
