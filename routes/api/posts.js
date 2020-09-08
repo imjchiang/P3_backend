@@ -43,13 +43,12 @@ router.put('/:id/comments', (req,res)=>
     db.Post.findOneAndUpdate({
         _id:req.params.id
     }, 
-    {$push: 
+    {$push:
         {
-        comments: 
-        {
-        descriptionsAndCode: req.body.descriptionsAndCode, 
-        author: req.body.author
-        }
+            comments: {
+            descriptionsAndCode: req.body.descriptionsAndCode, 
+            author: req.body.author
+            }
         }       
     },
     
