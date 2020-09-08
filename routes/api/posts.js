@@ -38,6 +38,35 @@ router.post("/", (req,res) =>
     })
 })
 
+
+
+router.put('/:id/comments/edit', (req,res)=>
+{
+   
+    db.collection.update(
+        {
+            _id : req.params.id, 
+            "comments._id": "req.body.id"
+        }, 
+        {
+            $set: { 
+                "comments.$.descriptionsAndCode": req.body.descriptionsAndCode
+       
+            }
+        }
+    )
+   
+    .then(deletedcomment => {
+        res.send(deletedcomment)
+        console.log(deletedcomment)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(503).send({message: 'server error'})
+    })
+    
+})
+// adding comments
 router.put('/:id/comments', (req,res)=>
 {
     db.Post.findOneAndUpdate({
@@ -63,6 +92,9 @@ router.put('/:id/comments', (req,res)=>
         res.status(503).send({message: 'server error'})
     })
 })
+
+
+
 
 // deleting comments
 router.put('/:id/comments/delete', (req,res)=>
