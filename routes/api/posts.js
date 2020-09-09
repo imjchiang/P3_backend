@@ -25,7 +25,7 @@ router.get('/', (req,res) => {
 
     } else {
 
-        db.Post.find().populate({path:'author',select:'name'}).sort('-date')
+        db.Post.find().populate({path:'author',select:'name'}).populate({path:"comments.author", select:"name"}).sort('-date')
         .then(foundPost => {
             // console.log(foundPost)
             res.send(foundPost)
