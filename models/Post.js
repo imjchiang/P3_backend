@@ -64,6 +64,10 @@ const PostSchema = new Schema(
         type: String,
         default: "No description or code available"
     }],
+    imgUrl:
+    [{
+        type: String,
+    }],
     //User passed by the reference to id
     author:
     {
