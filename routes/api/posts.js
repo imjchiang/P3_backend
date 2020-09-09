@@ -43,22 +43,20 @@ router.post("/", (req,res) =>
 router.put('/:id/comments/edit', (req,res)=>
 {
    
-    db.collection.update(
-        {
-            _id : req.params.id, 
-            "comments._id": "req.body.id"
-        }, 
-        {
-            $set: { 
-                "comments.$.descriptionsAndCode": req.body.descriptionsAndCode
-       
-            }
+    db.Post.findOneAndUpdate(
+    {
+        _id: req.params.id,
+        comments:{$elemMatch:{_id:req.body.referencedComment}}
+    }, 
+    {
+        $set: 
+        { 
+            "comments.$.descriptionsAndCode": req.body.descriptionsAndCode
         }
-    )
-   
-    .then(deletedcomment => {
-        res.send(deletedcomment)
-        console.log(deletedcomment)
+    })
+    .then(editedComment => {
+        res.send(editedComment)
+        console.log(editedComment)
     })
     .catch(err => {
         console.log(err)
@@ -66,6 +64,9 @@ router.put('/:id/comments/edit', (req,res)=>
     })
     
 })
+
+
+
 // adding comments
 router.put('/:id/comments', (req,res)=>
 {
@@ -127,7 +128,7 @@ router.put('/:id/comments/delete', (req,res)=>
 // router.put("/id", passport.authenticate('jwt', { session: false }), (req,res) => 
 router.get('/:id', (req,res) =>
 {
-    db.Post.findById(req.params.id).populate({path:'author',select:'name'}).populate({path:'tags',select:'name'})
+    db.Post.findById(req.params.id).populate({path:'author',select:'name'}).populate({path:'tags',select:'name'}).populate({path:"comments.author", select:"name"})
     .then(foundPost => {
         if(foundPost){
             res.send(foundPost)
