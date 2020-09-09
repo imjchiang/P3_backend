@@ -106,8 +106,7 @@ router.put('/:id/comments/delete', (req,res)=>
     {$pull:
         {
             comments: {
-                descriptionsAndCode:req.body.descriptionsAndCode,
-                author: req.body.author
+                _id: req.body.id
             }
         }
     },   
