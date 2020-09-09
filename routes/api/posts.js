@@ -9,15 +9,32 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const db = require("../../models");
 
 router.get('/', (req,res) => {
-    db.Post.find().populate({path:'author',select:'name'}).sort('-date')
-    .then(foundPost => {
-        console.log(foundPost)
-        res.send(foundPost)
-    })
-    .catch(err=>{
-        console.log(err)
-        res.status.apply(503).send({message: 'Database asleep?'})
-    })
+    //console.log(req.query.filter)
+    if(req.query.filter){
+        let f = req.query.filter.split(',')
+        console.log(f)
+        db.Post.find({'tags':{$in:f}}).populate({path:'author',select:'name'}).sort('-date')
+        .then(foundPost => {
+            // console.log(foundPost)
+            res.send(foundPost)
+        })
+        .catch(err=>{
+            console.log(err)
+            res.status.apply(503).send({message: 'Database asleep?'})
+        })
+
+    } else {
+
+        db.Post.find().populate({path:'author',select:'name'}).sort('-date')
+        .then(foundPost => {
+            // console.log(foundPost)
+            res.send(foundPost)
+        })
+        .catch(err=>{
+            console.log(err)
+            res.status.apply(503).send({message: 'Database asleep?'})
+        })
+    }
 })
 
 // router.post("/", passport.authenticate('jwt', { session: false }), (req,res) => 
@@ -25,7 +42,7 @@ router.post("/", (req,res) =>
 {   
     db.Post.create(req.body)
     .then(createdPost => {
-        console.log(createdPost)
+        // console.log(createdPost)
         res.status(201).send(createdPost)
     })
     .catch(err => {
