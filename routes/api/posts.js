@@ -68,7 +68,8 @@ router.put('/:id/comments/edit', (req,res)=>
     {
         $set: 
         { 
-            "comments.$.descriptionsAndCode": req.body.descriptionsAndCode
+            "comments.$.descriptionsAndCode": req.body.descriptionsAndCode,
+            "comments.$.imgUrl": req.body.imgUrl
         }
     })
     .then(editedComment => {
@@ -118,7 +119,8 @@ router.put('/:id/comments', (req,res)=>
         {
             comments: {
             descriptionsAndCode: req.body.descriptionsAndCode, 
-            author: req.body.author
+            author: req.body.author,
+            imgUrl: req.body.imgUrl
             }
         }       
     },   
@@ -189,7 +191,6 @@ router.put('/:id', (req,res)=>
         _id:req.params.id
     },
     req.body,
-    
     {
         new: true
     })

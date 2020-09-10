@@ -10,6 +10,12 @@ const CommentSchema = new Schema(
         type: String,
         default: "No description or code available"
     }],
+    //url for image of code snippets
+    imgUrl:
+    [{
+        type: String,
+        default: undefined
+    }],
     //User passed by the reference to id
     author:
     {
