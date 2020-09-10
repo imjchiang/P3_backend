@@ -82,7 +82,31 @@ router.put('/:id/comments/edit', (req,res)=>
     
 })
 
-
+//edit comment status
+router.put('/:id/comments/editStatus', (req,res)=>
+{
+   
+    db.Post.findOneAndUpdate(
+    {
+        _id: req.params.id,
+        comments:{$elemMatch:{_id:req.body.comment}}
+    }, 
+    {
+        $set: 
+        { 
+            "comments.$.starredOnPost": req.body.starredOnPost
+        }
+    })
+    .then(editedComment => {
+        res.send(editedComment)
+        console.log(editedComment)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(503).send({message: 'server error'})
+    })
+    
+})
 
 // adding comments
 router.put('/:id/comments', (req,res)=>
