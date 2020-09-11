@@ -4,7 +4,7 @@
 
 ## Purpose
 
-To save and send the data that rendered from clients. 
+To save and send the data by setting up proper routes and database. 
 
 ## Techonologies Used
 
@@ -17,7 +17,7 @@ To save and send the data that rendered from clients.
 ## Planning 
 [Project 3 Pitch Repo](https://github.com/imjchiang/Project3Pitch)
 
-ERD
+Database ERD
 ![ERD](./assets/exitcode_erd.png)
 
 
@@ -25,13 +25,13 @@ ERD
 
 ## Installation
 
-1. go to GIT REPOSITORY LINK HERE
+1. go to GIT REPOSITORY 
 2. fork and clone the repository
 3. install all node packages
     - npm install
 
     
-4. Set up the server
+4. set up the server
 -  create server.js
 
 server.js
@@ -74,7 +74,7 @@ app.listen(port, () =>
 });
 ```
 5. Set up the database 
-- create index.js file inside of models folder
+- create index.js file in the models folder
 
 ./models/index.js
 ``` JSON
@@ -106,10 +106,7 @@ db.on("error", (err) =>
     console.log(`Database error \n ${err}`);
 });
 
-//export the schema here
-module.exports.User = require("./User");
-module.exports.Post = require("./Post");
-module.exports.Tag = require("./Tag");
+
 ```
 5. add a .env file with the following field: <br>
 JWT_SECRET<br>
@@ -126,6 +123,7 @@ MONGO_URI with your local host url
 - Post
 - Tag
 - User 
+- Comment (nested)
 <br>
 
 ### How to create Schemas
@@ -250,7 +248,7 @@ Post Schema has two types of relational schemas.
 - Embedded relationship : Comment Schema 
 - Referenced realatipnship : User Schema, Tag Schema
 
-####  2. Export the schemas in the bottom of index.js 
+####  2. Export the schemas in the index.js 
 
  ./models/index.js
  ``` javascript
