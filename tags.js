@@ -5,27 +5,27 @@ const Tag = require("./models/Tag");
 
 // Inserting data 
 
-// Tag.insertMany([
-//     { name: 'git'},
-//     { name: 'front-end' },
-//     { name: 'back-end' },
-//     { name: 'fullstack' }, 
-//     { name: 'HTML' }, 
-//     { name: 'CSS' }, 
-//     { name: 'JavaScript' }, 
-//     { name: 'database' },
-//     { name: 'MongoDB' }, 
-//     { name: 'Sequel' },
-//     { name: 'node.js' }, 
-//     { name: 'authorization' },
-//     { name: 'React' }, 
-//     { name: 'EJS' },
-//     { name: 'JSX' }
-// ]).then(function() {
-//     console.log("Data inserted")
-// }).catch(function(error){
-//     console.log(error)
-// })
+Tag.insertMany([
+    { name: 'git'},
+    { name: 'front-end' },
+    { name: 'back-end' },
+    { name: 'fullstack' }, 
+    { name: 'HTML' }, 
+    { name: 'CSS' }, 
+    { name: 'JavaScript' }, 
+    { name: 'database' },
+    { name: 'MongoDB' }, 
+    { name: 'Sequel' },
+    { name: 'node.js' }, 
+    { name: 'authorization' },
+    { name: 'React' }, 
+    { name: 'EJS' },
+    { name: 'JSX' }
+]).then(function() {
+    console.log("Data inserted")
+}).catch(function(error){
+    console.log(error)
+})
 
 
 // tag ids for reference 
