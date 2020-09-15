@@ -1,6 +1,7 @@
-
-
 # Project 3 - exitcodeZERO (Backend) 
+
+## Deployed Site
+[exitcodeZERO](https://exit-code-zero.herokuapp.com/)
 
 ## Purpose
 
@@ -9,7 +10,7 @@ To save and send the data by setting up proper routes and database.
 ## Techonologies Used
 
 - node.js
-- MongoDB : database 
+- MongoDB: database 
 - passport, bcrypt, jwt : authenticationn
 - dotenv: hold jwt secret and server local host 
 - express: routing
@@ -21,20 +22,24 @@ Database ERD
 ![ERD](./assets/exitcode_erd.png)
 
 
-
-
 ## Installation
 
-1. go to GIT REPOSITORY 
-2. fork and clone the repository
+1. go to the back end [git repo](https://github.com/imjchiang/P3_backend)
+2. fork and clone the repo
 3. install all node packages
-    - npm install
+    - ```npm install```
+4. create a .env file containing ```JWT_SECRET```, ```MONGO_URI```, and ```ATLAS_URI```
+5. run the server.js with node or nodemon to ensure everything is up and running
+    - ```node server.js```
+    - ```nodemon```
+6. seed the tags data
+    - node ```seedTags.js```
+7. backend installation complete!
 
-    
-4. set up the server
--  create server.js
+## Setting up the Database
+- Purpose: What we did to set up the database
 
-server.js
+1. set up the server.js
 ``` Javascript
 require("dotenv").config();
 const express = require("express");
@@ -73,7 +78,7 @@ app.listen(port, () =>
     console.log(`Server is running on port: ${port}`);
 });
 ```
-5. Set up the database 
+2. Set up the database 
 - create index.js file in the models folder
 
 ./models/index.js
@@ -108,13 +113,6 @@ db.on("error", (err) =>
 
 
 ```
-5. add a .env file with the following field: <br>
-JWT_SECRET<br>
-MONGO_URI with your local host url 
-
-6. run the server!
-- nodemon
-- node server.js
 
 <br>
 
